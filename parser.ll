@@ -115,7 +115,6 @@ static int setValue(int linenum, int tokenClass, char *svalue)
             }
             j++;
         }
-
         str[j-1] = '\0';
         yylval.tokenData -> svalue = strdup(str);
         yylval.tokenData -> slen = strlen(str);

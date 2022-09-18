@@ -4,8 +4,8 @@
  * @date 2022-09-09
  * 
  */
-#ifndef SCANTYPE_H
-#define SCANTYPE_H
+#ifndef SCANTYPE_HH
+#define SCANTYPE_HH
 /**
  * @struct TokenData
  * @brief Creates a pass-back data space between flex and bison
