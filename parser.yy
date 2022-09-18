@@ -1,12 +1,20 @@
 %{
-// Jenner Higgins
-// Bison Parser
+/**
+ * @file parser.yy
+ * @author Jenner Higgins
+ * @brief Bison parser
+ * @version 0.1.5
+ * @date 2022-09-17
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
-#include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 
-#include "scanType.hpp" // TokenData type
+#include "scanType.hh" // TokenData type
 
 extern int yylex();
 extern FILE *yyin;
@@ -36,12 +44,12 @@ program : declList program
 ;
 
 declList : NUMCONST         { printf("Line %d Token: NUMCONST Value: %d  Input: %s\n", $1->linenum, $1->nvalue, $1->tokenstr); }
-         | STRINGCONST      { printf("Line %d Token: STRINGCONST Value: \"%s\"  Len: %d  Input: %s\n", $1->linenum, $1->svalue, $1->slen, $1->tokenstr); } // NEED TO PRINT LENGTH
+         | STRINGCONST      { printf("Line %d Token: STRINGCONST Value: \"%s\"  Len: %d  Input: %s\n", $1->linenum, $1->svalue, $1->slen, $1->tokenstr); }
          | CHARCONST        { printf("Line %d Token: CHARCONST Value: '%c'  Input: %s\n", $1->linenum, $1->cvalue, $1->tokenstr); }
          | BOOLCONST        { printf("Line %d Token: BOOLCONST Value: %d  Input: %s\n", $1->linenum, $1->nvalue, $1->tokenstr); }
-         | KEYWORD          { printf("Line %d Token: %s\n", $1->linenum, $1->tokenstr); }
-         | OP               { printf("Line %d Token: %s\n", $1->linenum, $1->tokenstr); }
-         | ID               { printf("Line %d Token: ID Value: %s\n", $1->linenum, $1->tokenstr); }
+         | KEYWORD          { printf("Line %d Token: %s\n", $1->linenum, $1->svalue); }
+         | OP               { printf("Line %d Token: %s\n", $1->linenum, $1->svalue); }
+         | ID               { printf("Line %d Token: ID Value: %s\n", $1->linenum, $1->svalue); }
          | INVALID          { printf("ERROR(%d): Invalid or misplaced input character: '%s'. Character Ignored.\n", $1->linenum, $1->tokenstr);}
          | MULOP
 ;
@@ -74,6 +82,8 @@ int main(int argc, char * argv[])
 
     numErrors = 0;
     yyparse();
+
+    // printf("Number of errors: %d\n", numErrors);
 
     return 0;
 }

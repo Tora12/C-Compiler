@@ -46,7 +46,7 @@ Jenner Higgins [@Tora12](https://github.com/Tora12)
 ## Version History
 
 * 0.1
-    * Initial Release
+    * Initial release
 
 ## License
 
